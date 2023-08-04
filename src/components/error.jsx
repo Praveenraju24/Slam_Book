@@ -17,7 +17,7 @@ export default function Error(){
     return <div style={styles}>
        <p>Incorrect password or Email </p>
        <br></br>
-       <img src="https://thumbs.dreamstime.com/b/man-encouraging-someone-message-written-card-holding-which-try-again-166496369.jpg" width={"300px"} height={"300px"} ></img>
+       <img src="https://thumbs.dreamstime.com/b/man-encouraging-someone-message-written-card-holding-which-try-again-166496369.jpg" width={"300px"} height={"300px"} alt="Try again"></img>
        <button onClick={handleError}>Try Again</button>
     </div>;
 }
