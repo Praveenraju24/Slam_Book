@@ -29,8 +29,8 @@ const schema1=new mongoose.Schema({
     password:String
 })
 
-const data=mongoose.model("data",schema);
-const credentials=mongoose.model("credentials",schema1);
+const data=mongoose.model(process.env.DB_COLLECTION1,schema);
+const credentials=mongoose.model(process.env.DB_COLLECTION2,schema1);
 
 exp.use(cors());
 
