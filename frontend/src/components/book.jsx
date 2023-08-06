@@ -5,6 +5,7 @@ import App from "./app";
 import Error from "./error";
 import Signup from "./signup";
 import Forgot from "./forgot";
+import PageNotFound from "./pagenotfound";
 
 export default function Book(){
     return <div>
@@ -15,6 +16,7 @@ export default function Book(){
                 <Route path="/error" element={<Error/>}></Route>
                 <Route path="/signup" element={<Signup />}></Route>
                 <Route path="/forgot" element={<Forgot/>}></Route>
+                <Route path="*" element={<PageNotFound />}></Route>
             </Routes>
           </BrowserRouter>
     </div>
