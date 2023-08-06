@@ -42,18 +42,21 @@ exp.use(express.json())
 exp.post("/insert",(req,res)=>{
     insert();
     async function insert(){
+       
+    await credentials.findOne({email:req.body.mail}).then(data => {
         var str1="success";
-    const que=await credentials.findOne({email:req.body.mail});
-    if(que!==null)
-    str1="failure";
-
-    credentials.insertMany([
-        {
-            email:req.body.mail,
-            password:req.body.pass
-        }
-    ])
-    res.send({ans:str1});
+        if(data!==null)
+        str1="failure";
+        if(str1==="success"){
+            credentials.insertMany([
+                {
+                    email:req.body.mail,
+                    password:req.body.pass
+                }
+            ])}
+        res.send({ans:str1});
+    });
+   
 
    }
 })
@@ -62,12 +65,16 @@ exp.post("/new",(req,res)=>{
    
     reset();
     async function reset(){
-        const ans=await credentials.findOneAndUpdate({email:req.body.mail},  { password:req.body.pass },{new:true});
-        var str2="success";
-        if(ans===null)
-        str2="failure";
-        
-        res.send({ack:str2});
+        await credentials.findOneAndUpdate({email:req.body.mail},  { password:req.body.pass },{new:true}).then(data =>{
+            var str2="success";
+            if(data===null)
+            str2="failure";
+            
+            res.send({ack:str2});
+        }).catch(err => {
+            console.log(err);
+        })
+       
         
     }
 })
@@ -76,11 +83,15 @@ exp.post("/data",(req,res)=>{
      finding()
      async function finding(){
        
-       const query= await credentials.findOne({email : req.body.email });
-       var str="success";
-       if(query===null)
-       str="failure";
-       res.send({we:str});
+       await credentials.findOne({email : req.body.email }).then(data => {
+            var str="success";
+            if(data===null)
+            str="failure";
+            res.send({we:str});
+        }).catch(err => {
+            console.log(err)
+      });
+      
      }
 })
 exp.post("/add",(req,res)=>{
@@ -109,7 +120,8 @@ exp.get("/getItems",(req,res)=>{
 
     async function test(){
         const new_arr=[];
-        const arr = await data.find();
+        const arr = await data.find().then(data => {
+            return data}).catch(err => console.log(err));
         
         for(var i=0;i<arr.length;i++)
         {
