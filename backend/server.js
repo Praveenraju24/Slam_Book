@@ -42,9 +42,10 @@ exp.use(express.json())
 exp.post("/insert",(req,res)=>{
     insert();
     async function insert(){
+        var str1="success";
     const que=await credentials.findOne({email:req.body.mail});
     if(que!==null)
-    res.send({ans:"failure"});
+    str1="failure";
 
     credentials.insertMany([
         {
@@ -52,21 +53,21 @@ exp.post("/insert",(req,res)=>{
             password:req.body.pass
         }
     ])
-    res.send({ans:"success"});
+    res.send({ans:str1});
 
    }
 })
 
-exp.post("/new",(req,res)=>{
+exp.post("/new",(req,res)=>{ 
    
     reset();
     async function reset(){
         const ans=await credentials.findOneAndUpdate({email:req.body.mail},  { password:req.body.pass },{new:true});
-        console.log(ans);
+        var str2="success";
         if(ans===null)
-        res.send({ack:"failure"});
-        else
-        res.send({ack:"success"});
+        str2="failure";
+        
+        res.send({ack:str2});
         
     }
 })
@@ -76,7 +77,10 @@ exp.post("/data",(req,res)=>{
      async function finding(){
        
        const query= await credentials.findOne({email : req.body.email });
-       res.send(query);
+       var str="success";
+       if(query===null)
+       str="failure";
+       res.send({we:str});
      }
 })
 exp.post("/add",(req,res)=>{
@@ -130,4 +134,4 @@ exp.get("/getItems",(req,res)=>{
         res.send(new_arr);
     }
 })
-exp.listen(3000,()=>console.log("running"));
+exp.listen(8000,()=>console.log("running at 8000"));

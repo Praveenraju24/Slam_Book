@@ -68,15 +68,14 @@ export default function Home(){
             email:"",
             password:""
          })
-        const cred=await axios.post("http://localhost:3000/data",obj4);
+        const cred=await axios.post("http://localhost:8000/data",obj4);
 
-         if(cred.data.password===obj4.password)
+         if(cred.data.we==="success")
          navigate("/signin",{replace:true});
          else
          navigate("/error",{replace:true});
         
      }
-     
      function handleClick(event)
      {   const {name,value}=event.target
          setData(prev =>{

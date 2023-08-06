@@ -58,7 +58,7 @@ export default function Forgot()
             pass:""
          })
       
-        const cred= await axios.post("http://localhost:3000/new",obj4);
+        const cred= await axios.post("http://localhost:8000/new",obj4);
       
          if(cred.data.ack==="failure"){
             alert("Your Email not found Kindly Signup");

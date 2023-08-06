@@ -21,7 +21,7 @@ function App()
                 date:""
         });
         async function getItems(){
-               const res = await axios.get("http://localhost:3000/getItems")
+               const res = await axios.get("http://localhost:8000/getItems")
               
                setItems(prev =>{
                 return [...prev,...res.data];
@@ -53,7 +53,7 @@ function App()
             })
             try{
                 console.log("input value",inp);
-              await axios.post("http://localhost:3000/add",inp);
+              await axios.post("http://localhost:8000/add",inp);
             }catch(err){
                 console.log(err);
             }
