@@ -68,7 +68,7 @@ export default function Home(){
             email:"",
             password:""
          })
-        const cred=await axios.post("http://localhost:8000/data",obj4);
+        const cred=await axios.post("https://raju-dairies.onrender.com/data",obj4);
 
          if(cred.data.we==="success")
          navigate("/signin",{replace:true});

@@ -21,7 +21,7 @@ function App()
                 date:""
         });
         async function getItems(){
-               const res = await axios.get("http://localhost:8000/getItems")
+               const res = await axios.get("https://raju-dairies.onrender.com/getItems")
               
                setItems(prev =>{
                 return [...prev,...res.data];
@@ -53,7 +53,7 @@ function App()
             })
             try{
                 console.log("input value",inp);
-              await axios.post("http://localhost:8000/add",inp);
+              await axios.post("https://raju-dairies.onrender.com/add",inp);
             }catch(err){
                 console.log(err);
             }
