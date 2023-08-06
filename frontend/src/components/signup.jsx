@@ -71,6 +71,11 @@ export default function Signup()
         if(obj5.mail.endsWith("@gmail.com")){
         const  str= await axios.post("http://localhost:3000/insert",obj5);
 
+        if(str.data.ans==="failure"){
+            alert("Your email is already exist ,signin or choose forgot password");
+            navigator("/",{replace:true});
+        }
+
         if(str.data.ans==='success'){
             alert("Successfully Registered Kindly Remember Your credentials");
          navigator("/signin",{replace:true});

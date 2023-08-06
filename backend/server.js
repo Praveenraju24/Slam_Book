@@ -40,6 +40,11 @@ exp.use(express.json())
      
 
 exp.post("/insert",(req,res)=>{
+    insert();
+    async function insert(){
+    const que=await credentials.findOne({email:req.body.mail});
+    if(que!==null)
+    res.send({ans:"failure"});
 
     credentials.insertMany([
         {
@@ -48,14 +53,16 @@ exp.post("/insert",(req,res)=>{
         }
     ])
     res.send({ans:"success"});
+
+   }
 })
 
 exp.post("/new",(req,res)=>{
    
-    reset()
+    reset();
     async function reset(){
         const ans=await credentials.findOneAndUpdate({email:req.body.mail},  { password:req.body.pass },{new:true});
-        
+        console.log(ans);
         if(ans===null)
         res.send({ack:"failure"});
         else
