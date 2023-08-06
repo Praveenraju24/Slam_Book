@@ -1,9 +1,12 @@
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
+import * as dotenv from "dotenv";
+dotenv.config();
 
-mongoose.connect("mongodb://127.0.0.1:27017/Slam_book",{useNewUrlParser:true, useUnifiedTopology: true})
 const exp=express();
+
+mongoose.connect(process.env.MONGO_URL+"/"+process.env.DB_NAME,{useNewUrlParser:true, useUnifiedTopology: true})
 
 const schema=new mongoose.Schema({
     nam:String,
@@ -120,5 +123,4 @@ exp.get("/getItems",(req,res)=>{
         res.send(new_arr);
     }
 })
-
 exp.listen(3000,()=>console.log("running"));
