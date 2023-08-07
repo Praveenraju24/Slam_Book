@@ -118,6 +118,7 @@ function App()
                                         <p>{item.strength}</p>
                                         <p>{item.life}</p>
                                         <p>{item.nam}</p>
+                                        <p>{item.mem}</p>
                                         <p>{item.date}</p>
                                   </div>
                         })}
