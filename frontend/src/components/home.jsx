@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 
 const obj={
     height:"300px",
-    width:"250px",
+    width:"270px",
     backgroundColor:"#FBD85D",
     justifyContent:"center",
     margin:"50px",
